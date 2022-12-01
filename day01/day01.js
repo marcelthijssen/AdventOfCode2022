@@ -1,4 +1,5 @@
 const fs = require( "fs" );
+const collect = require( "collect.js" );
 
 const input = fs
   .readFileSync( "day01.txt", { encoding: "utf-8" } ) // read day??.txt content
@@ -25,22 +26,16 @@ function part1() {
 
 function part2() {
   const total = [];
-
+  let score = [];
   input.forEach( ( index ) => {     // Different loop
-    const score = index.reduce( ( a, b ) => a + b, 0 );
+    score = index.reduce( ( a, b ) => a + b, 0 );
     total.push( score );     // Add score to new array 'total'
-  });
-  let max = Math.max( ...total );
-  let x = 1;
-  let threeHighestScoreTotal = 0;
-  while ( x <= 3 ) {
-    max = Math.max( ...total );
-    threeHighestScoreTotal += max;     // Add max to threeHighestScoreTotal
-    const index = total.indexOf( max );     // find indexOf HighestNumber
-    total.splice( index, 1 );    //remove index with the highestNumber
-    x++;
-  }
-  console.log( "Day01-part 2: threeHighestScoreTotal", threeHighestScoreTotal );
+  } );
+
+  const topThreeTotal = collect( total.sort( ( a, b ) => b - a ) )
+    .take( 3 )
+    .reduce( ( a, b ) => a + b, 0 );
+  console.log( "Day01-part 1: maxCalories", topThreeTotal );
 }
 
 part1();
