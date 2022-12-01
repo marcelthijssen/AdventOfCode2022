@@ -19,7 +19,7 @@ function part1() {
     total.push( score );     // Add score to new array 'total'
   }
   const maxCalories = Math.max( ...total ); // find highest number in array
-  console.log('maxCalories', maxCalories);
+  console.log( "Day01-part1: maxCalories", maxCalories );
 }
 
 function part2() {
@@ -30,7 +30,7 @@ function part2() {
   }
   let max = Math.max( ...total );
   let x = 1;
-  let threeHighestScoreTotal=0;
+  let threeHighestScoreTotal = 0;
   while ( x <= 3 ) {
     max = Math.max( ...total );
     threeHighestScoreTotal += max;     // Add max to threeHighestScoreTotal
