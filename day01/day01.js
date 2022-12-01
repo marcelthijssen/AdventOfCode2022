@@ -35,7 +35,7 @@ function part2() {
   const topThreeTotal = collect( total.sort( ( a, b ) => b - a ) )
     .take( 3 )
     .reduce( ( a, b ) => a + b, 0 );
-  console.log( "Day01-part 1: maxCalories", topThreeTotal );
+  console.log( "Day01-part 2: Top Three Total", topThreeTotal );
 }
 
 part1();
