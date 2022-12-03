@@ -1,33 +1,18 @@
 const fs = require( "fs" );
 
-const input = fs
+const rounds = fs
   .readFileSync( "day02.txt", { encoding: "utf-8" } ) // read day??.txt content
   .replace( /\r/g, "" ) // remove all \r characters to avoid issues on Windows
   .split( "\n" ) // Split on newline
   .filter( Boolean ) // Remove empty lines
   .map( ( line ) => {
-    const [ x, y ] = line.split( " " );
-    return { x, y };
+    const [ playerOne, playerTwo ] = line.split( " " );
+    return { x: playerOne, y: playerTwo };
   } );
-
-console.log( input );
-
-// 1 for Rock, 2 for Paper, and 3 for Scissors
-// A X = Rock
-// B Y = paper
-// C Z = scissor
-
-// if x = a && y=X
-// +1+6
-// x = b && y=y
-// +2+6
-// x = c && y = z
-// +3+6
 
 function part1() {
   let totalScore = 0;
-  input.forEach( score => {
-    console.log( score );
+  rounds.forEach( score => {
     if ( score.y === "X" ) { // rock
       totalScore += 1;
       if ( score.x === "C" ) { // scissor
@@ -51,12 +36,54 @@ function part1() {
       || score.x === "C" && score.y === "Z" ) {
       totalScore += 3;
     }
-    console.log( totalScore );
-
-});
+  } );
+  console.log( "Day02-part 1: totalScore", totalScore );
 }
 
 
-// console.log( input[0].x, input[0].y );
+function part2() {
+
+  let totalNewScore = 0;
+  rounds.forEach( score => {
+    if ( score.y === "Y" ) { // DRAW
+      totalNewScore += 3;
+      if ( score.x === "A" ) { //rock
+        totalNewScore += 1;
+      }
+      if ( score.x === "B" ) { //paper
+        totalNewScore += 2;
+      }
+      if ( score.x === "C" ) { //scissor
+        totalNewScore += 3;
+      }
+    }
+    if ( score.y === "X" ) { // LOSE
+      if ( score.x === "A" ) {
+        totalNewScore += 3;
+      }
+      if ( score.x === "B" ) {
+        totalNewScore += 1;
+      }
+      if ( score.x === "C" ) {
+        totalNewScore += 2;
+      }
+    }
+    if ( score.y === "Z" ) { // WIN
+      totalNewScore += 6;
+      if ( score.x === "A" ) {
+        totalNewScore += 2;
+      }
+      if ( score.x === "B" ) {
+        totalNewScore += 3;
+      }
+      if ( score.x === "C" ) {
+        totalNewScore += 1;
+      }
+    }
+  } );
+  console.log( "Day02-part 2: totalNewScore", totalNewScore );
+}
 
 part1();
+
+part2();
