@@ -6,7 +6,6 @@ const datastream = fs.readFileSync( "day06.txt", { encoding: "utf-8" } ) // read
 
 // console.log( datastream );
 
-
 function part1() {
   const lengthOfMarker= 4
   let isStartOfPackets = false;
