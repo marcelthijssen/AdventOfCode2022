@@ -1,6 +1,6 @@
 .idea
 .gitignore
-/node_modules
+node_modules
 tests
 day07
 day09
