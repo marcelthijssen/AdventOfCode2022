@@ -10,31 +10,31 @@ let instructions = fs.readFileSync( "day10.txt", { encoding: "utf-8" } ) // read
 
 function part1() {
   let x = 1;
-  let signalStrength = 0;
+  let signalStrengthTotal = 0;
   let numberOfCycles = 0;
 
   for ( let i = 0 ; i < instructions.length ; i++ ) {
 
     numberOfCycles++;
     if ( instructions[i].type !== "noop" ) {
-      signalStrengthAdded( numberOfCycles );
+      signalStrength( numberOfCycles );
 
       numberOfCycles++;
-      signalStrengthAdded( numberOfCycles );
+      signalStrength( numberOfCycles );
 
       x = x + parseInt( instructions[i].amount ); // add amount to X
     } else {
-      signalStrengthAdded( numberOfCycles );
+      signalStrength( numberOfCycles );
     }
   }
 
-  function signalStrengthAdded( numberOfCycles ) {
+  function signalStrength( numberOfCycles ) {
     if ( numberOfCycles === 20 || numberOfCycles === 60 || numberOfCycles === 100 || numberOfCycles === 140 || numberOfCycles === 180 || numberOfCycles === 220 ) {
-      signalStrength += Math.abs( numberOfCycles * x );
+      signalStrengthTotal += Math.abs( numberOfCycles * x );
     }
   }
 
-  console.log( "Day10-part 1: SignalStrength", signalStrength );
+  console.log( "Day10-part 1: SignalStrength", signalStrengthTotal );
 }
 
 part1();
