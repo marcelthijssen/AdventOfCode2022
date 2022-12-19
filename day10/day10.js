@@ -62,15 +62,14 @@ function part2() {
     if ( numberOfCycles > 160 && numberOfCycles <= 199 ) { numberOfCycles -= 160; }
     if ( numberOfCycles > 200 && numberOfCycles <= 239 ) { numberOfCycles -= 200; }
 
-    if ( numberOfCycles === x + 1 || x === numberOfCycles || numberOfCycles === x + 2 ) {
+    if ( numberOfCycles === x || numberOfCycles === x + 1 || numberOfCycles === x + 2 ) {
       inputScreen += "#";
     } else {
       inputScreen += " ";
     }
   }
 
-  console.log( "Day10-part 2: KAPITALS FPGPHFGH", "\n", inputScreen.substring( 0, 39 ) + "\n" + inputScreen.substring( 40, 79 ) + "\n" + inputScreen.substring( 80, 119 )
-    + "\n" + inputScreen.substring( 120, 159 ) + "\n" + inputScreen.substring( 160, 199 ) + "\n" + inputScreen.substring( 200, 239 ) );
+  console.log( inputScreen.match( /.{1,40}/g ) );
 }
 
 part1();
