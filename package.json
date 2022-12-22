@@ -2,6 +2,7 @@
   "name": "AoC2022",
   "version": "1.0.0",
   "dependencies": {
-    "collect.js": "^4.34.3"
+    "collect.js": "^4.34.3",
+    "string-math": "^1.2.2"
   }
 }
